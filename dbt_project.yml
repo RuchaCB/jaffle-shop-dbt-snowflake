@@ -1,0 +1,8 @@
+name: my_dbt_snowflake_project
+version: '1.0'
+profile: my_profile_name
+
+# Optional but common settings
+model-paths: ["models"]
+target-path: "target"
+clean-targets: ["target", "dbt_modules"]
