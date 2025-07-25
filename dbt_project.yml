@@ -1,0 +1,33 @@
+name: 'my_new_project'
+version: '1.0.0'
+config-version: 2
+
+profile: 'default'  # This links to profiles.yml
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  my_new_project:
+    +materialized: view  # Default to view unless overridden
+    raw_layer:  # <-- name of folder inside models/
+      +schema: raw        # schema name in Snowflake
+      +database: your_db_name  # Snowflake DB name
+      +materialized: table
+    staging_layer:
+      +schema: staging
+      +database: your_db_name
+      +materialized: view
+    marts_layer:
+      +schema: marts
+      +database: your_db_name
+      +materialized: table
