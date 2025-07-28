@@ -1,4 +1,4 @@
-name: 'my_new_project'
+name: 'jaffle_shop'
 version: '1.0.0'
 config-version: 2
 
@@ -17,17 +17,23 @@ clean-targets:
   - "dbt_packages"
 
 models:
-  my_new_project:
-    +materialized: view  # Default to view unless overridden
-    raw_layer:  # <-- name of folder inside models/
-      +schema: raw        # schema name in Snowflake
-      +database: your_db_name  # Snowflake DB name
+  jaffle_shop:
+
+    marts:
       +materialized: table
-    staging_layer:
-      +schema: staging
-      +database: your_db_name
+    staging:
       +materialized: view
-    marts_layer:
-      +schema: marts
-      +database: your_db_name
-      +materialized: table
+
+    # +materialized: view  # Default to view unless overridden
+    # raw_layer:  # <-- name of folder inside models/
+    #   +schema: raw        # schema name in Snowflake
+    #   +database: your_db_name  # Snowflake DB name
+    #   +materialized: table
+    # staging_layer:
+    #   +schema: staging
+    #   +database: your_db_name
+    #   +materialized: view
+    # marts_layer:
+    #   +schema: marts
+    #   +database: your_db_name
+    #   +materialized: table
